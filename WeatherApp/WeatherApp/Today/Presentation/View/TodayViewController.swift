@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TodayViewController.swift
 //  WeatherApp
 //
 //  Created by Ezequiel Fritz on 14-09-21.
@@ -7,13 +7,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+final class TodayViewController: BaseViewController<TodayViewModel, Coordinator> {
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        print("asd")
     }
-
-
 }
-
