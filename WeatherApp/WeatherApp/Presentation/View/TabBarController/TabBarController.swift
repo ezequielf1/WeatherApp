@@ -32,6 +32,11 @@ final class TabBarController: UITabBarController {
         setTabBarItems()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+
     private func setTabBarItems() {
         let todayNavController = UINavigationController(
             rootViewController: todayViewController
@@ -41,12 +46,12 @@ final class TabBarController: UITabBarController {
         )
 
         todayViewController.tabBarItem = .init(
-            title: "Today",
+            title: L10n.today,
             image: nil,
             tag: TabBarItemType.today.rawValue
         )
         forecastViewController.tabBarItem = .init(
-            title: "Forecast",
+            title: L10n.forecast,
             image: nil,
             tag: TabBarItemType.forecast.rawValue
         )

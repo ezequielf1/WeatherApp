@@ -1,0 +1,15 @@
+input_dir: WeatherApp/Resources/
+output_dir: WeatherApp/Resources/SwiftGen
+xcassets:
+    inputs:
+        - Assets.xcassets
+        - Colors.xcassets
+    outputs:
+        templateName: swift5
+        output: Assets.swift
+strings:
+    inputs:
+        - Localizable.strings
+    outputs:
+        templateName: structured-swift5
+        output: Strings.swift

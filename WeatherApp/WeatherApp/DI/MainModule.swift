@@ -29,7 +29,7 @@ final class MainModule {
         }
 
         container.register(UINavigationController.self) { resolver in
-            UINavigationController(rootViewController: resolver.resolve(TodayViewController.self)!)
+            UINavigationController(rootViewController: resolver.resolve(TabBarController.self)!)
         }
     }
 
