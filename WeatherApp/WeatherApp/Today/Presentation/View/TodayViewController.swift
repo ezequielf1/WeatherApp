@@ -10,5 +10,6 @@ import UIKit
 final class TodayViewController: BaseViewController<TodayViewModel, Coordinator> {
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("asd")
     }
 }
