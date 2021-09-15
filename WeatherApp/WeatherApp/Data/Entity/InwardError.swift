@@ -14,13 +14,13 @@ enum InwardError {
     var message: String {
         switch self {
         case .malformedUrl:
-            return "L10n.malformedUrlError"
+            return L10n.malformedUrl
         case .decoding:
-            return "L10n.decodingError"
+            return L10n.decodingError
         case .emptyResponse:
-            return "L10n.emptyResponseError"
+            return L10n.emptyResponseError
         case .timeout:
-            return "L10n.timeoutError"
+            return L10n.timeoutError
         }
     }
 }

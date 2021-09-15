@@ -8,3 +8,16 @@
 
 "today" = "Today";
 "forecast" = "Forecast";
+"error" = "Error";
+"connection_error" = "Connection error";
+"malformed_url" = "Malformed url";
+"decoding_error" = "Decoding error";
+"empty_response_error" = "Empty response error";
+"timeout_error" = "Timeout error";
+"ok" = "Ok";
+"app_name" = "Weather app";
+"app_only_works_with_location_auth" = "The app only works with location authorization. Please enable it to be able to view the information.";
+"user_location_not_available" = "The user location is not available";
+"today" = "Today";
+"share" = "Share";
+"check_out_the_weather" = "Check out the weather";

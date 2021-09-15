@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class BaseViewController<V: BaseViewModel, C: Coordinator>: UIViewController {
+class BaseViewController<V: BaseViewModel, C: Coordinator>: UIViewController, Alertable {
 
     let viewModel: V
     let coordinator: C
@@ -40,12 +40,12 @@ class BaseViewController<V: BaseViewModel, C: Coordinator>: UIViewController {
     func subscribeToErrorObservable() {
         subscribe(observable: viewModel.errorObservable) { [weak self] errorArgs in
             guard let self = self else { return }
-//            DispatchQueue.main.async {
-//                self.showAlert(
-//                    title: errorArgs.title ?? L10n.error,
-//                    message: errorArgs.description ?? ""
-//                )
-//            }
+            DispatchQueue.main.async {
+                self.showAlert(
+                    title: errorArgs.title,
+                    message: errorArgs.description ?? ""
+                )
+            }
         }
     }
 

@@ -27,6 +27,9 @@ final class Injection {
     private func injectDependencies() {
         TodayModule(container).inject()
         ForecastModule(container).inject()
+        NetworkModule(container).inject()
+        DataModule(container).inject()
+        DomainModule(container).inject()
         mainModule.inject()
     }
 }

@@ -16,8 +16,21 @@ final class TodayModule {
     }
 
     func inject() {
-        container.register(TodayViewModel.self) { _ in
-            .init()
+        container.register(GetCurrentWeatherUseCase.Alias.self, name: GetCurrentWeatherUseCase.identifier) { resolver in
+            GetCurrentWeatherUseCase.Alias(
+                GetCurrentWeatherUseCase(dataSource: resolver.resolve(TodayWeatherDataSource.self)!,
+                                         mapper: resolver.resolve(TodayWeatherDomainMapper.self)!)
+            )
+        }
+
+        container.register(WeatherInformationBuilder.self) { _ in
+            WeatherInformationBuilderImpl()
+        }
+
+        container.register(TodayViewModel.self) { resolver in
+            .init(getCurrentWeatherUseCase: resolver.resolve(GetCurrentWeatherUseCase.Alias.self,
+                                                             name: GetCurrentWeatherUseCase.identifier)!,
+                  weatherInformationBuilder: resolver.resolve(WeatherInformationBuilder.self)!)
         }
 
         container.register(TodayViewController.self) { resolver in

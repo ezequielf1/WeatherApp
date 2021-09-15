@@ -16,8 +16,18 @@ final class ForecastModule {
     }
 
     func inject() {
-        container.register(ForecastViewModel.self) { _ in
-            .init()
+        container.register(GetForecastDataUseCase.Alias.self, name: GetForecastDataUseCase.identifier) { resolver in
+            GetForecastDataUseCase.Alias(
+                GetForecastDataUseCase(dataSource: resolver.resolve(ForecastDataSource.self)!,
+                                       mapper: resolver.resolve(ForecastDomainMapper.self)!)
+            )
+        }
+
+        container.register(ForecastViewModel.self) { resolver in
+            .init(
+                getForecastDataUseCase: resolver.resolve(GetForecastDataUseCase.Alias.self,
+                                                         name: GetForecastDataUseCase.identifier)!
+            )
         }
 
         container.register(ForecastViewController.self) { resolver in

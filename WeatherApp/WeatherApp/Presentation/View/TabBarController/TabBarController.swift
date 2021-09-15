@@ -47,12 +47,12 @@ final class TabBarController: UITabBarController {
 
         todayViewController.tabBarItem = .init(
             title: L10n.today,
-            image: nil,
+            image: UIImage(systemName: "sun.max"),
             tag: TabBarItemType.today.rawValue
         )
         forecastViewController.tabBarItem = .init(
             title: L10n.forecast,
-            image: nil,
+            image: UIImage(systemName: "cloud.sun.rain"),
             tag: TabBarItemType.forecast.rawValue
         )
 
@@ -60,5 +60,25 @@ final class TabBarController: UITabBarController {
             todayNavController,
             forecastNavController
         ]
+
+        setTabBarAppearance()
+    }
+
+    private func setTabBarAppearance() {
+        tabBar.tintColor = Asset.Colors.blue.color
+        let appearance = UITabBarItem.appearance()
+        let unSelectedAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(
+                ofSize: TextSize.caption2,
+                weight: .medium
+            ),
+            .foregroundColor: Asset.Colors.black.color
+        ]
+        appearance.setTitleTextAttributes(unSelectedAttributes, for: .normal)
+
+        let selectedAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: Asset.Colors.blue.color
+        ]
+        appearance.setTitleTextAttributes(selectedAttributes, for: .selected)
     }
 }

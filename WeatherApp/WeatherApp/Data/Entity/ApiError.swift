@@ -6,8 +6,6 @@
 //
 
 struct ApiError: Decodable {
-    let statusCode: Int?
-    let error: String?
+    let cod: String?
     let message: String?
-    let errorCode: String?
 }

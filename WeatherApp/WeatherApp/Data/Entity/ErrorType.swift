@@ -6,7 +6,6 @@
 //
 
 enum ErrorType: Error {
-    case notFound
     case connection
     case api(_ apiError: ApiError)
     case general(_ error: Error? = nil)

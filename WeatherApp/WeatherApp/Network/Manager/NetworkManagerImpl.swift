@@ -78,21 +78,29 @@ final class NetworkManagerImpl: NetworkManager {
         #if !RELEASE
         debugPrint(response.error ?? "An error occurred making a request")
         #endif
-        onCompletion(ApiResult.error(error: .general()))
-//        if let error = response.error {
-//            guard error.responseCode != NSURLErrorTimedOut else {
-//                return onCompletion(.error(error: .inward(.timeout)))
-//            }
-//            guard !isNotFound(error.responseCode) || response.data != nil else {
-//                return onCompletion(.error(error: .notFound))
-//            }
-//            if isAuthorized(error.responseCode) {
-//                decodeErrorBody(response.data, onCompletion)
-//            } else {
-//                onCompletion(ApiResult.unauthorized(error: error))
-//            }
-//        } else {
-//            onCompletion(ApiResult.error(error: .general()))
-//        }
+        if let error = response.error {
+            guard error.responseCode != NSURLErrorTimedOut else {
+                return onCompletion(.error(error: .inward(.timeout)))
+            }
+            decodeErrorBody(response.data, onCompletion)
+        } else {
+            onCompletion(ApiResult.error(error: .general()))
+        }
+    }
+
+    private func decodeErrorBody<R>(
+        _ data: Data?,
+        _ onCompletion: @escaping (ApiResult<R>) -> Void
+    ) {
+        if let dataAsJson = data {
+            do {
+                let apiError = try decoder.decode(ApiError.self, from: dataAsJson)
+                onCompletion(ApiResult.error(error: .api(apiError)))
+            } catch {
+                onCompletion(ApiResult.error(error: .general()))
+            }
+        } else {
+            onCompletion(ApiResult.error(error: .general()))
+        }
     }
 }

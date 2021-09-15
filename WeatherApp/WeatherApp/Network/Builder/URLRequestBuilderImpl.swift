@@ -21,6 +21,10 @@ struct URLRequestBuilderImpl: URLRequestBuilder {
         guard let url = urlComponents.url else { return nil }
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue
+        request.headers = [
+            .init(name: ServerConstants.rapidApiHostHeader, value: ServerConstants.rapidApiHostValue),
+            .init(name: ServerConstants.rapidApiKeyHeader, value: ServerConstants.rapidApiKeyValue)
+        ]
         return request
     }
 
