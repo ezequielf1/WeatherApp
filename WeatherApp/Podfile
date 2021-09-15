@@ -11,6 +11,7 @@ target 'WeatherApp' do
   pod 'Swinject'
   pod 'Alamofire', '~> 5.2'
   pod 'SwiftGen', '~> 6.0'
+  pod 'Firebase/Database'
 
   target 'WeatherAppTests' do
     inherit! :search_paths

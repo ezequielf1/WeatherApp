@@ -8,6 +8,7 @@
 import Foundation
 import Swinject
 import Alamofire
+import Firebase
 
 final class NetworkModule {
     private let container: Container
@@ -23,6 +24,14 @@ final class NetworkModule {
 
         container.register(NetworkManager.self) { resolver in
             NetworkManagerImpl(alamofire: resolver.resolve(Session.self)!)
+        }
+
+        container.register(DatabaseReference.self) { _ in
+            Database.database().reference()
+        }
+
+        container.register(DatabaseManager.self) { resolver in
+            DatabaseManagerImpl(ref: resolver.resolve(DatabaseReference.self)!)
         }
     }
 }

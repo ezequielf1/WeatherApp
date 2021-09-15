@@ -40,8 +40,8 @@ final class DataModule {
     }
 
     private func injectUserLocationModule() {
-        container.register(UserLocationLocalDataSource.self) { _ in
-            UserLocationLocalDataSourceImpl()
+        container.register(UserLocationLocalDataSource.self) { resolver in
+            UserLocationLocalDataSourceImpl(databaseManager: resolver.resolve(DatabaseManager.self)!)
         }
     }
 
