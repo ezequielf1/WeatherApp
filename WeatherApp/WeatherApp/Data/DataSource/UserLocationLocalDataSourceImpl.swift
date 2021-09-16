@@ -18,7 +18,6 @@ final class UserLocationLocalDataSourceImpl: UserLocationLocalDataSource {
     func getCurrentLocation(latitude: Double, longitude: Double, onCompletion: @escaping (UserLocation?, Error?) -> Void) {
         let location = CLLocation(latitude: latitude, longitude: longitude)
         geocoder.reverseGeocodeLocation(location) { placemarks, error in
-            return self.getLocationFromDatabase(latitude: latitude, lonngitude: longitude, onCompletion: onCompletion)
             if error != nil {
                 return self.getLocationFromDatabase(latitude: latitude, lonngitude: longitude, onCompletion: onCompletion)
             }
